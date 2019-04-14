@@ -31,7 +31,7 @@ namespace KolkoKrzyzyk
 
 
 
-
+            Console.ReadKey();
 
 
 
