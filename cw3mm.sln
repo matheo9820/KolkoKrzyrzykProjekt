@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KolkoKrzyzyk", "KolkoKrzyzy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zadanie_2_3", "zadanie_2_3\zadanie_2_3.csproj", "{FC4A284C-AEE8-465C-A630-F0B636E01B3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zadanie_2_4", "zadanie_2_4\zadanie_2_4.csproj", "{F7555981-A7A7-4300-8608-B85D490902A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FC4A284C-AEE8-465C-A630-F0B636E01B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC4A284C-AEE8-465C-A630-F0B636E01B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC4A284C-AEE8-465C-A630-F0B636E01B3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7555981-A7A7-4300-8608-B85D490902A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7555981-A7A7-4300-8608-B85D490902A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7555981-A7A7-4300-8608-B85D490902A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7555981-A7A7-4300-8608-B85D490902A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

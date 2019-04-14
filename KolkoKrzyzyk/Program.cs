@@ -26,7 +26,7 @@ namespace KolkoKrzyzyk
             Console.WriteLine("Wpisz imie gracza B: ");
             imieGraczaB = Console.ReadLine();
 
-
+            /*******************/
 
 
 
