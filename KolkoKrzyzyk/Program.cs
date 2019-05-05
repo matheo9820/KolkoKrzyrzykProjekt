@@ -26,15 +26,31 @@ namespace KolkoKrzyzyk
             Console.WriteLine("Wpisz imie gracza B: ");
             imieGraczaB = Console.ReadLine();
 
-            /*******************/
+            bool koniecGry = false;
+            while (!koniecGry)
+            {
+                Console.Clear();
+                RysujPlansze(plansza);
+
+                Console.ReadKey();
+            }
 
 
 
 
             Console.ReadKey();
+        }
 
+        static void RysujPlansze(char[,] plansza)
+        {
+            int wysokosc = plansza.GetLength(0);
+            int szerokosc = plansza.GetLength(1);
 
-
+            for (int i = 0; i < wysokosc; ++j)
+            {
+                Console.Write(plansza[i, j]);
+                Console.WriteLine();
+            }
         }
     }
 }
