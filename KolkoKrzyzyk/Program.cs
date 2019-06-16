@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace KolkoKrzyzyk
 
             };
             char[,] planszaKopia = plansza.Clone() as char[,];
-                
+
 
             bool koniecGry = false;
             bool ruchGraczaA = true;
@@ -46,12 +47,23 @@ namespace KolkoKrzyzyk
                     ruchGraczaA = true;
                 }
 
-                Console.ReadKey();
+                if (koniecGry)
+                    break;
             }
 
-
-
-
+            Console.Clear();
+            RysujPlansze(plansza);
+            Console.Write("Koniec gry! ");
+            if (koniecGry)
+            {
+                Console.Write("Wygral ");
+                if (ruchGraczaA)
+                    Console.WriteLine(gB.Imie);
+                else
+                    Console.WriteLine(gA.Imie);
+            }
+            else
+                Console.WriteLine("Remis.");
             Console.ReadKey();
         }
 
@@ -60,9 +72,10 @@ namespace KolkoKrzyzyk
             int wysokosc = plansza.GetLength(0);
             int szerokosc = plansza.GetLength(1);
 
-            for (int i = 0; i < wysokosc; ++j)
+            for (int i = 0; i < wysokosc; ++i)
             {
-                for (int j = 0; i < wysokosc; ++i)
+                for (int j = 0; j < wysokosc; ++j)
+
                     Console.Write(plansza[i, j]);
                 Console.WriteLine();
             }
@@ -76,8 +89,8 @@ namespace KolkoKrzyzyk
 
     abstract class Gracz
     {
-        public string Imie {get; set; }
-        public char Znak {get; set; }
+        public string Imie { get; set; }
+        public char Znak { get; set; }
 
         public bool SprawdzCzyKoniecGry(char[,] plansza)
         {
@@ -127,12 +140,42 @@ namespace KolkoKrzyzyk
 
             return false;
         }
+
+        public bool UmiescZnak (char c, char[,] plansza, char[,] planszaKopia)
+        {
+            int wysokosc = plansza.GetLength(0);
+            int szerokosc = plansza.GetLength(1);
+            if (wysokosc != planszaKopia.GetLength(0) ||
+                szerokosc != planszaKopia.GetLength(1))
+                throw new Exception("Rozmiary plansz sie nie zgadzaja!");
+
+            for (int i = 0; i < wysokosc; ++i)
+                for (int j = 0; j < szerokosc; ++j)
+                {
+                    if ((plansza[i, j] == c) && (plansza [i, j] == planszaKopia[i, j]))
+                    {
+                        plansza[i, j] = Znak;
+                        return true;
+                    }
+                }
+
+            return false;
+        }
     }
 
     class GraczLudzki : Gracz, IRuch
     {
         public bool WykonajRuch(char[,] plansza, char [,] planszaKopia)
         {
+            char wybranePole;
+            do
+            {
+                Console.Write("Wybierz puste pole: ");
+                wybranePole = Console.ReadKey().KeyChar;
+                Console.WriteLine();
+            }
+            while (!UmiescZnak(wybranePole, plansza, planszaKopia));
+
             return SprawdzCzyKoniecGry(plansza);
         }
     }
@@ -141,12 +184,18 @@ namespace KolkoKrzyzyk
     {
         public bool WykonajRuch(char[,] plansza, char[,] planszaKopia)
         {
+            Random rnd = new Random();
+            char wybranePole;
+            do
+            {
+                int m = rnd.Next(1, plansza.Length + 1);
+                wybranePole = m.ToString()[0];
+            }
+            while (!UmiescZnak(wybranePole, plansza, planszaKopia));
+            Thread.Sleep(2000);
+
             return SprawdzCzyKoniecGry(plansza);
-        }       
+        }
     }
-
-   
-
-
-
 }
+
